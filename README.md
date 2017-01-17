@@ -76,11 +76,11 @@ SET FS CLIENT
 set "download_speed":2383127 (=20Mb/s, unit Bytes), protoca="udp"(if vps is openvz), "server_address":"xxx.xxx.xxx.xxx", "upload_speed":238312(=2Mb/s, unit Bytes)
 
 2 modify file client-dir/port_map.json
-"dst_port":<ss-server port>, "listen_port":10010(assigned any used one as you like), "name":"whatever as you want"
+"dst_port":\<ss-server port>, "listen_port":10010(assigned any used one as you like), "name":"whatever as you want"
 
 3 nohup java -jar finalspeed_client.jar >/dev/null 2>&1 &
 
 4 modify ss config_fs.json
 "server":"0.0.0.0",
-"server_port":"<listen_port above>"
+"server_port":"\<listen_port above>"
 
