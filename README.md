@@ -70,3 +70,17 @@ sh /fs/restart.sh
 windows 版: 在cnf目录下新建文件listen_port,文件内容为端口号.
 
 注意:由于finalspeed的工作原理,不要开放finalspeed所使用的tcp端口.即安全组中编辑入站规则添加开放FS端口的UDP协议入站
+
+SET FS CLIENT
+1 modify file client-dir/client_config.json
+set "download_speed":2383127 (=20Mb/s, unit Bytes), protoca="udp"(if vps is openvz), "server_address":"xxx.xxx.xxx.xxx", "upload_speed":238312(=2Mb/s, unit Bytes)
+
+2 modify file client-dir/port_map.json
+"dst_port":<ss-server port>, "listen_port":10010(assigned any used one as you like), "name":"whatever as you want"
+
+3 nohup java -jar finalspeed_client.jar >/dev/null 2>&1 &
+
+4 modify ss config_fs.json
+"server":"0.0.0.0",
+"server_port":"<listen_port above>"
+
